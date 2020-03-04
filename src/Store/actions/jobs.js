@@ -97,3 +97,31 @@ export const updateTextEditor = data => {
     payload: data
   };
 };
+
+export const jobformSubmitSuccess = () => {
+  return {
+    type: actionTypes.FETCH_JOB_SUCCESS
+  };
+};
+
+export const jobformSubmitFail = error => {
+  return {
+    type: actionTypes.FETCH_JOB_FAIL,
+    error: error
+  };
+};
+
+export const jobformSubmitStart = () => {
+  return {
+    type: actionTypes.FETCH_JOB_START
+  };
+};
+
+export const jobFormSubmit = () => {
+  return dispatch => {
+    dispatch(jobformSubmitStart());
+    const jobs = store.getState().jobs.jobs;
+    localStorage.setItem("Jobs", JSON.stringify(jobs));
+    dispatch(fetchJobsSuccess());
+  };
+};

@@ -79,6 +79,28 @@ const updateTextEditor = (state, action) => {
   });
 };
 
+const jobformSubmitStart = (state, action) => {
+  let newJobs = [...state.jobs];
+  let selected = { ...state.selected };
+  newJobs.unshift(selected);
+  selected = {
+    id: "",
+    title: "",
+    desc: null,
+    openPos: 0,
+    companyName: "",
+    requiredSkills: [],
+    location: ""
+  };
+  return updateObject(state, { loading: true, jobs: newJobs, selected });
+};
+
+const jobformSubmitSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false
+  });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_JOB_START:
@@ -95,6 +117,10 @@ const reducer = (state = initialState, action) => {
       return handleDeleteChip(state, action);
     case actionTypes.UPDATE_TEXT_EDITOR:
       return updateTextEditor(state, action);
+    case actionTypes.JOB_FORM_SUBMIT_START:
+      return jobformSubmitStart(state, action);
+    case actionTypes.JOB_FORM_SUBMIT_SUCCESS:
+      return jobformSubmitSuccess(state, action);
     default:
       return state;
   }

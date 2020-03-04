@@ -3,5 +3,6 @@ export {
   updateSelectedValue,
   handleAddChip,
   handleDeleteChip,
-  updateTextEditor
+  updateTextEditor,
+  jobFormSubmit
 } from "./jobs";

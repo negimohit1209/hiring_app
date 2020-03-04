@@ -38,7 +38,7 @@ class Texteditor extends Component {
         <Editor
           editorState={this.state.editorState}
           wrapperStyle={{ maxWidth: 650, display: "inline-block" }}
-          editorStyle={{ border: "1px solid #F1F1F1", height: 250 }}
+          editorStyle={{ border: "1px solid #F1F1F1", height: 650 }}
           onEditorStateChange={this.onEditorStateChange}
         />
       </div>

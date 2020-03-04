@@ -5,12 +5,12 @@ const bodyBgMap = {
   dark: "#303030"
 };
 const primaryColorMap = {
-  light: "#273b4f",
-  dark: "#0fc5a4"
+  light: "#4caf50",
+  dark: "#cddc39"
 };
 const secondaryColorMap = {
-  light: "#0fc5a4",
-  dark: "#273b4f"
+  light: "#cddc39",
+  dark: "#4caf50"
 };
 
 export default function getTheme(type) {
@@ -25,6 +25,10 @@ export default function getTheme(type) {
       },
       background: {
         default: bodyBgMap[type]
+      },
+      error: {
+        main: "#f44336",
+        default: "#f44336"
       }
     },
     typography: {

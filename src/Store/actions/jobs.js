@@ -89,3 +89,11 @@ export const handleDeleteChip = (chip, index) => {
     }
   };
 };
+
+export const updateTextEditor = data => {
+  console.log(data);
+  return {
+    type: actionTypes.UPDATE_TEXT_EDITOR,
+    payload: data
+  };
+};

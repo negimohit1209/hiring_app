@@ -7,7 +7,7 @@ const initialState = {
   selected: {
     id: "",
     title: "",
-    desc: "",
+    desc: null,
     openPos: 0,
     companyName: "",
     requiredSkills: [],
@@ -68,6 +68,17 @@ const handleDeleteChip = (state, action) => {
   });
 };
 
+const updateTextEditor = (state, action) => {
+  const newDesc = action.payload;
+  const newSelected = updateObject(state.selected, {
+    desc: newDesc
+  });
+  console.log(newSelected);
+  return updateObject(state, {
+    selected: newSelected
+  });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_JOB_START:
@@ -82,6 +93,8 @@ const reducer = (state = initialState, action) => {
       return handleAddChip(state, action);
     case actionTypes.HANDLE_DELETE_CHIP:
       return handleDeleteChip(state, action);
+    case actionTypes.UPDATE_TEXT_EDITOR:
+      return updateTextEditor(state, action);
     default:
       return state;
   }

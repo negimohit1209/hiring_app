@@ -2,5 +2,6 @@ export {
   fetchJobs,
   updateSelectedValue,
   handleAddChip,
-  handleDeleteChip
+  handleDeleteChip,
+  updateTextEditor
 } from "./jobs";

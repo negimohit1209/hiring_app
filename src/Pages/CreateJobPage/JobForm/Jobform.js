@@ -26,7 +26,6 @@ function Jobform({
   handleDeleteChip
 }) {
   const classes = useStyles();
-  console.log(selected);
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div className={classes.formFeild}>
@@ -75,7 +74,7 @@ function Jobform({
           }}
         />
         <p>Description</p>
-        <TextEditor />
+        <TextEditor content={selected.desc} />
         <ChipInput
           value={selected.requiredSkills}
           fullWidth

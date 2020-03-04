@@ -56,11 +56,11 @@ export default function SimpleCard(props) {
           {bull}
           Open Position: {props.job.openPos}
         </Typography>
-        <Typography variant="body2" component="p">
+        {/* <Typography variant="body2" component="p">
           {props.job.desc}
-        </Typography>
+        </Typography> */}
         <div className={classes.chip_root}>
-          {props.job.skillsRequired.map((skill, i) => (
+          {props.job.requiredSkills.map((skill, i) => (
             <Chip key={i} color="secondary" size="small" label={skill} />
           ))}
         </div>

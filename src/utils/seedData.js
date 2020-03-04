@@ -6,7 +6,7 @@ export const data = [
     openPos: 3,
     location: "Delhi",
     companyName: "Sportzz",
-    skillsRequired: ["react", "node", "java", "python"]
+    requiredSkills: ["react", "node", "java", "python"]
   },
   {
     id: "101",
@@ -15,7 +15,7 @@ export const data = [
     openPos: 3,
     location: "Delhi",
     companyName: "Sportzz",
-    skillsRequired: ["react", "node", "java", "python"]
+    requiredSkills: ["react", "node", "java", "python"]
   },
   {
     id: "102",
@@ -24,7 +24,7 @@ export const data = [
     openPos: 3,
     location: "Delhi",
     companyName: "Sportzz",
-    skillsRequired: ["react", "node", "java", "python"]
+    requiredSkills: ["react", "node", "java", "python"]
   },
   {
     id: "103",
@@ -33,6 +33,6 @@ export const data = [
     openPos: 3,
     location: "Delhi",
     companyName: "Sportzz",
-    skillsRequired: ["react", "node", "java", "python"]
+    requiredSkills: ["react", "node", "java", "python"]
   }
 ];

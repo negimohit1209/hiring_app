@@ -73,17 +73,14 @@ const updateTextEditor = (state, action) => {
   const newSelected = updateObject(state.selected, {
     desc: newDesc
   });
-  console.log(newSelected);
   return updateObject(state, {
     selected: newSelected
   });
 };
 
 const jobformSubmitStart = (state, action) => {
-  let newJobs = [...state.jobs];
-  let selected = { ...state.selected };
-  newJobs.unshift(selected);
-  selected = {
+  let newSelected = { ...state.selected };
+  newSelected = {
     id: "",
     title: "",
     desc: null,
@@ -92,7 +89,7 @@ const jobformSubmitStart = (state, action) => {
     requiredSkills: [],
     location: ""
   };
-  return updateObject(state, { loading: true, jobs: newJobs, selected });
+  return updateObject(state, { loading: true, newSelected });
 };
 
 const jobformSubmitSuccess = (state, action) => {

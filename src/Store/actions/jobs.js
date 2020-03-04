@@ -119,9 +119,11 @@ export const jobformSubmitStart = () => {
 
 export const jobFormSubmit = () => {
   return dispatch => {
-    dispatch(jobformSubmitStart());
-    const jobs = store.getState().jobs.jobs;
+    const job = store.getState().jobs.selected;
+    const jobs = [job, ...JSON.parse(localStorage.getItem("Jobs"))];
+    console.log(jobs);
     localStorage.setItem("Jobs", JSON.stringify(jobs));
+    dispatch(jobformSubmitStart());
     dispatch(fetchJobsSuccess());
   };
 };

@@ -1,5 +1,6 @@
 export const data = [
   {
+    id: "100",
     title: "software developer",
     desc: "This is software developer role",
     openPos: 3,
@@ -8,6 +9,7 @@ export const data = [
     skillsRequired: ["react", "node", "java", "python"]
   },
   {
+    id: "101",
     title: "software developer",
     desc: "This is software developer role",
     openPos: 3,
@@ -16,6 +18,7 @@ export const data = [
     skillsRequired: ["react", "node", "java", "python"]
   },
   {
+    id: "102",
     title: "software developer",
     desc: "This is software developer role",
     openPos: 3,
@@ -24,6 +27,7 @@ export const data = [
     skillsRequired: ["react", "node", "java", "python"]
   },
   {
+    id: "103",
     title: "software developer",
     desc: "This is software developer role",
     openPos: 3,

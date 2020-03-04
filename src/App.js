@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   jobs: jobsReducer
 });
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );

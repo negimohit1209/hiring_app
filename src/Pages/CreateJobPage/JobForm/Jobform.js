@@ -1,6 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
+import TextEditor from "../../../Components/TextEditor/Texteditor";
+import ChipInput from "material-ui-chip-input";
+import * as actions from "../../../Store/actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -10,61 +14,94 @@ const useStyles = makeStyles(theme => ({
     }
   },
   formFeild: {
+    margin: theme.spacing(2),
     textAlign: "center"
   }
 }));
 
-export default function FormPropsTextFields() {
+function Jobform({
+  selected,
+  onUpdateSelectedValue,
+  handleAddChip,
+  handleDeleteChip
+}) {
   const classes = useStyles();
-
+  console.log(selected);
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div className={classes.formFeild}>
         <TextField
           required
-          id="outlined-required"
+          id="title"
           label="Title"
           variant="outlined"
-          value=""
+          InputProps={{
+            value: selected.title,
+            onChange: event => onUpdateSelectedValue("title", event)
+          }}
         />
         <TextField
           required
-          id="outlined-required"
+          id="companyName"
           label="Company Name"
           variant="outlined"
-          value=""
+          InputProps={{
+            value: selected.companyName,
+            onChange: event => onUpdateSelectedValue("companyName", event)
+          }}
         />
 
         <TextField
-          id="outlined-number"
+          id="openPos"
           label="Positions"
           type="number"
           InputLabelProps={{
             shrink: true
           }}
           variant="outlined"
+          InputProps={{
+            value: selected.openPos,
+            onChange: event => onUpdateSelectedValue("openPos", event)
+          }}
         />
         <TextField
           required
           id="outlined-required"
           label="Location"
           variant="outlined"
-          value=""
+          InputProps={{
+            value: selected.location,
+            onChange: event => onUpdateSelectedValue("location", event)
+          }}
         />
-        <TextField
-          id="outlined-search"
-          label="Search field"
-          type="search"
+        <p>Description</p>
+        <TextEditor />
+        <ChipInput
+          value={selected.requiredSkills}
+          fullWidth
+          label="Required Skills"
           variant="outlined"
-        />
-        <TextField
-          id="outlined-helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          helperText="Some important text"
-          variant="outlined"
+          onAdd={chip => handleAddChip(chip)}
+          onDelete={(chip, index) => handleDeleteChip(chip, index)}
         />
       </div>
     </form>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    selected: state.jobs.selected
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateSelectedValue: (property, event) =>
+      dispatch(actions.updateSelectedValue({ property, event })),
+    handleAddChip: chip => dispatch(actions.handleAddChip(chip)),
+    handleDeleteChip: (chip, index) =>
+      dispatch(actions.handleDeleteChip(chip, index))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jobform);

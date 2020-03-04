@@ -30,12 +30,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    // onIngredientAdded: ingName => dispatch(Actions.addIngredient(ingName)),
-    // onIngredientRemoveded: ingName =>
-    //   dispatch(Actions.removeIngredient(ingName)),
-    // onInitIngredients: () => dispatch(Actions.initIngredients()),
     onFetchJobs: () => dispatch(actions.fetchJobs())
-    // onSetAuthRedirectPath: path => dispatch(Actions.setAuthRedirectPath(path))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

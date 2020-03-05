@@ -5,5 +5,7 @@ export {
   handleDeleteChip,
   updateTextEditor,
   jobFormSubmit,
-  selectJob
+  selectJob,
+  deleteJob,
+  initSelect
 } from "./jobs";

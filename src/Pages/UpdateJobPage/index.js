@@ -17,7 +17,7 @@ const styles = theme => ({
   }
 });
 
-class CreateJobPage extends Component {
+class UpdateJobPage extends Component {
   componentWillMount() {
     const jobId = this.props.match.params.jobId;
     this.props.selectJob(jobId);
@@ -51,4 +51,4 @@ export default compose(
     withTheme: true
   }),
   connect(null, mapDispatchToProps)
-)(CreateJobPage);
+)(UpdateJobPage);

@@ -12,6 +12,7 @@ import getTheme from "../../utils/theme";
 import HomePage from "../../Pages/HomePage";
 import CreateJobPage from "../../Pages/CreateJobPage";
 import UpdateJobPage from "../../Pages/UpdateJobPage";
+import ViewJobPage from "../../Pages/ViewJobPage";
 
 export default function AppLayout() {
   return (
@@ -21,6 +22,7 @@ export default function AppLayout() {
         <Switch>
           <Route path="/create" component={CreateJobPage} />
           <Route path="/update/:jobId" component={UpdateJobPage} />
+          <Route path="/job/:jobId" component={ViewJobPage} />
           <Route path="/" exact component={HomePage} />
           <Redirect to="/" />
         </Switch>

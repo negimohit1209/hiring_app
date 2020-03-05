@@ -63,6 +63,35 @@ export const selectJob = id => {
   };
 };
 
+export const deleteJobStart = id => {
+  return {
+    type: actionTypes.DELETE_JOB_START,
+    id: id
+  };
+};
+
+export const deleteJobSuccess = () => {
+  return {
+    type: actionTypes.DELETE_JOB_SUCCESS
+  };
+};
+
+export const deleteJobFail = error => {
+  return {
+    type: actionTypes.DELETE_JOB_FAIL,
+    error: error
+  };
+};
+
+export const deleteJob = id => {
+  return dispatch => {
+    dispatch(deleteJobStart(id));
+    let jobs = [...store.getState().jobs.jobs];
+    localStorage.setItem("Jobs", JSON.stringify(jobs));
+    dispatch(deleteJobSuccess());
+  };
+};
+
 export const updateSelectedValue = ({ property, event }) => {
   return {
     type: actionTypes.UPDATE_SELECTED_FIELD,
@@ -100,33 +129,54 @@ export const updateTextEditor = data => {
   };
 };
 
-export const jobformSubmitSuccess = () => {
+export const jobformSubmitSuccess = jobs => {
   return {
-    type: actionTypes.FETCH_JOB_SUCCESS
+    type: actionTypes.JOB_FORM_SUBMIT_SUCCESS,
+    jobs: jobs
   };
 };
 
 export const jobformSubmitFail = error => {
   return {
-    type: actionTypes.FETCH_JOB_FAIL,
+    type: actionTypes.JOB_FORM_SUBMIT_FAIL,
     error: error
   };
 };
 
 export const jobformSubmitStart = () => {
   return {
-    type: actionTypes.FETCH_JOB_START
+    type: actionTypes.JOB_FORM_SUBMIT_START
   };
 };
 
-export const jobFormSubmit = () => {
+export const initSelect = () => {
+  return {
+    type: actionTypes.INIT_SELECT
+  };
+};
+
+export const jobFormSubmit = id => {
   return dispatch => {
-    let job = store.getState().jobs.selected;
-    job = { ...job, id: Date.now() };
-    const jobs = [job, ...JSON.parse(localStorage.getItem("Jobs"))];
-    console.log(jobs);
-    localStorage.setItem("Jobs", JSON.stringify(jobs));
     dispatch(jobformSubmitStart());
-    dispatch(fetchJobsSuccess());
+    let job = store.getState().jobs.selected;
+    let jobs = store.getState().jobs.jobs;
+    if (jobs.length === 0) {
+      dispatch(fetchJobs());
+    }
+    jobs = store.getState().jobs.jobs;
+    // JSON.parse(localStorage.getItem("Jobs"));
+    if (id != null) {
+      let index = jobs.findIndex(job => job.id === id);
+      if (index !== -1) {
+        jobs[index] = job;
+      } else {
+        // some error will be thrown
+      }
+    } else {
+      job = { ...job, id: Date.now() };
+      jobs = [job, ...jobs];
+    }
+    localStorage.setItem("Jobs", JSON.stringify(jobs));
+    dispatch(jobformSubmitSuccess(jobs));
   };
 };

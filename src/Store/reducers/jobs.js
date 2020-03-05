@@ -84,8 +84,11 @@ const updateTextEditor = (state, action) => {
 };
 
 const jobformSubmitStart = (state, action) => {
-  let newSelected = { ...state.selected };
-  newSelected = {
+  return updateObject(state, { loading: true });
+};
+
+const jobformSubmitSuccess = (state, action) => {
+  let newSelected = {
     id: "",
     title: "",
     desc: null,
@@ -94,12 +97,39 @@ const jobformSubmitStart = (state, action) => {
     requiredSkills: [],
     location: ""
   };
-  return updateObject(state, { loading: true, newSelected });
+  return updateObject(state, {
+    loading: false,
+    selected: newSelected,
+    jobs: action.jobs
+  });
 };
 
-const jobformSubmitSuccess = (state, action) => {
+const deleteJobStart = (state, action) => {
+  // console.log(`id = ${action.id}`);
+  let jobs = [...state.jobs];
+  let jobId = action.id;
+  jobs = jobs.filter(job => job.id !== jobId);
+  return updateObject(state, { loading: true, jobs });
+};
+
+const deleteJobSuccess = (state, action) => {
   return updateObject(state, {
     loading: false
+  });
+};
+
+const initSelect = (state, action) => {
+  const selected = {
+    id: null,
+    title: "",
+    desc: null,
+    openPos: 0,
+    companyName: "",
+    requiredSkills: [],
+    location: ""
+  };
+  return updateObject(state, {
+    selected
   });
 };
 
@@ -127,6 +157,12 @@ const reducer = (state = initialState, action) => {
       return selectJobStart(state, action);
     case actionTypes.SELECT_JOB_SUCCESS:
       return selectJobSuccess(state, action);
+    case actionTypes.DELETE_JOB_START:
+      return deleteJobStart(state, action);
+    case actionTypes.DELETE_JOB_SUCCESS:
+      return deleteJobSuccess(state, action);
+    case actionTypes.INIT_SELECT:
+      return initSelect(state, action);
     default:
       return state;
   }

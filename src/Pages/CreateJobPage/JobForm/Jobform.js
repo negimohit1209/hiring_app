@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import compose from "lodash/fp/compose";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import TextEditor from "../../../Components/TextEditor/Texteditor";
@@ -29,7 +31,8 @@ function Jobform({
   onUpdateSelectedValue,
   handleAddChip,
   handleDeleteChip,
-  handleSubmit
+  handleSubmit,
+  history
 }) {
   const classes = useStyles();
   return (
@@ -39,7 +42,8 @@ function Jobform({
       autoComplete="off"
       onSubmit={event => {
         event.preventDefault();
-        handleSubmit();
+        handleSubmit(selected.id);
+        history.push("/");
       }}
     >
       <div className={classes.formFeild}>
@@ -120,8 +124,11 @@ const mapDispatchToProps = dispatch => {
     handleAddChip: chip => dispatch(actions.handleAddChip(chip)),
     handleDeleteChip: (chip, index) =>
       dispatch(actions.handleDeleteChip(chip, index)),
-    handleSubmit: () => dispatch(actions.jobFormSubmit())
+    handleSubmit: id => dispatch(actions.jobFormSubmit(id))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Jobform);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Jobform);

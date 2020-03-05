@@ -27,8 +27,8 @@ export default function getTheme(type) {
         default: bodyBgMap[type]
       },
       error: {
-        main: "#f44336",
-        default: "#f44336"
+        main: "#123456",
+        default: "#123456"
       }
     },
     typography: {

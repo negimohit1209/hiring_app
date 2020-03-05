@@ -105,7 +105,6 @@ const jobformSubmitSuccess = (state, action) => {
 };
 
 const deleteJobStart = (state, action) => {
-  // console.log(`id = ${action.id}`);
   let jobs = [...state.jobs];
   let jobId = action.id;
   jobs = jobs.filter(job => job.id !== jobId);

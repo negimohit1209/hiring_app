@@ -19,7 +19,6 @@ const styles = theme => ({
 
 class CreateJobPage extends Component {
   componentWillMount() {
-    console.log("mhoti");
     this.props.initSelect();
   }
   render() {

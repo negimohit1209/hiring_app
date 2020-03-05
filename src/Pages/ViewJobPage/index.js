@@ -29,10 +29,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(null, mapDispatchToProps)(ViewJobPage);
-
-// export default compose(
-//   withStyles(styles, {
-//     withTheme: true
-//   }),
-//   connect(null, null)
-// )(ViewJobPage);

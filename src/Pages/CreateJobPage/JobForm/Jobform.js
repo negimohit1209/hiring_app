@@ -92,7 +92,6 @@ function Jobform({
           }}
         />
         <p>Description</p>
-        {console.log(selected.desc)}
         <TextEditor content={selected.desc} />
         <ChipInput
           value={selected.requiredSkills}

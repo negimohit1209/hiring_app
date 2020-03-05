@@ -33,7 +33,6 @@ class HomePage extends Component {
     const initialPos = (this.state.page - 1) * 3;
     const finalPos = Math.min(initialPos + 3, this.props.jobs.length);
     const paginateJobs = this.props.jobs.slice(initialPos, finalPos);
-    console.log(paginateJobs);
     return (
       <div className={classes.root}>
         <Appbar />

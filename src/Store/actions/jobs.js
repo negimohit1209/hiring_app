@@ -57,8 +57,7 @@ export const selectJob = id => {
   return dispatch => {
     dispatch(selectJobStart());
     const jobs = JSON.parse(localStorage.getItem("Jobs"));
-    const job = jobs.find(job => job.id === id);
-    console.log(job);
+    const job = jobs.find(job => job.id.toString() === id);
     dispatch(selectJobSuccess(job));
   };
 };
@@ -122,7 +121,6 @@ export const handleDeleteChip = (chip, index) => {
 };
 
 export const updateTextEditor = data => {
-  console.log(data);
   return {
     type: actionTypes.UPDATE_TEXT_EDITOR,
     payload: data

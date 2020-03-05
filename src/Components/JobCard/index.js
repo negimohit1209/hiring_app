@@ -95,7 +95,6 @@ function SimpleCard(props) {
         <div className={classes.chip_root}>
           <MuiThemeProvider theme={redTheme}>
             <Button
-              component={Link}
               variant="contained"
               onClick={handleOpen}
               size="small"

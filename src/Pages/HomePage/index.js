@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/styles";
 import compose from "lodash/fp/compose";
 import { Link } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Appbar from "../../Components/Appbar/Appbar";

@@ -57,7 +57,7 @@ export const selectJob = id => {
   return dispatch => {
     dispatch(selectJobStart());
     const jobs = JSON.parse(localStorage.getItem("Jobs"));
-    const job = jobs.find(job => job.id == id);
+    const job = jobs.find(job => job.id === id);
     console.log(job);
     dispatch(selectJobSuccess(job));
   };

@@ -56,8 +56,10 @@ export const selectJobStart = () => {
 export const selectJob = id => {
   return dispatch => {
     dispatch(selectJobStart());
-    const jobs = store.getState().jobs.jobs;
-    dispatch(fetchJobsSuccess(jobs));
+    const jobs = JSON.parse(localStorage.getItem("Jobs"));
+    const job = jobs.find(job => job.id == id);
+    console.log(job);
+    dispatch(selectJobSuccess(job));
   };
 };
 
@@ -119,7 +121,8 @@ export const jobformSubmitStart = () => {
 
 export const jobFormSubmit = () => {
   return dispatch => {
-    const job = store.getState().jobs.selected;
+    let job = store.getState().jobs.selected;
+    job = { ...job, id: Date.now() };
     const jobs = [job, ...JSON.parse(localStorage.getItem("Jobs"))];
     console.log(jobs);
     localStorage.setItem("Jobs", JSON.stringify(jobs));

@@ -1,7 +1,6 @@
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { connect } from "react-redux";
-import DraftPasteProcessor from "draft-js/lib/DraftPasteProcessor";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import * as actions from "../../Store/actions";
 
@@ -10,11 +9,10 @@ class Texteditor extends Component {
   constructor(props) {
     super(props);
     let editorState;
-    if (this.props.content !== null) {
-      const processedHTML = DraftPasteProcessor.processHTML(this.props.content);
-      const contentState = ContentState.createFromBlockArray(processedHTML);
-      //move focus to the end.
-      editorState = EditorState.createWithContent(contentState);
+    const { desc } = this.props.selected;
+    if (desc !== null) {
+      const data = convertFromRaw(desc);
+      editorState = EditorState.createWithContent(data);
       editorState = EditorState.moveFocusToEnd(editorState);
     } else {
       editorState = EditorState.createEmpty();
@@ -24,13 +22,11 @@ class Texteditor extends Component {
     };
   }
   onEditorStateChange = editorState => {
-    // console.log(convertToRaw(editorState.getCurrentContent()));
     this.setState({
       editorState
     });
-    this.props.handleUpdateTextEditor(
-      convertToRaw(editorState.getCurrentContent())
-    );
+    const data = convertToRaw(editorState.getCurrentContent());
+    this.props.handleUpdateTextEditor(data);
   };
   render() {
     return (

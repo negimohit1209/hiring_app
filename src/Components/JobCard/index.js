@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
-import Icon from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,6 +66,8 @@ export default function SimpleCard(props) {
         </div>
         <div className={classes.chip_root}>
           <Button
+            component={Link}
+            to="/create"
             variant="contained"
             size="small"
             color="error"
@@ -76,6 +78,8 @@ export default function SimpleCard(props) {
           </Button>
           {/* This Button uses a Font Icon, see the installation instructions in the Icon component docs. */}
           <Button
+            component={Link}
+            to={`update/${props.job.id}`}
             variant="contained"
             color="primary"
             size="small"

@@ -11,6 +11,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import getTheme from "../../utils/theme";
 import HomePage from "../../Pages/HomePage";
 import CreateJobPage from "../../Pages/CreateJobPage";
+import UpdateJobPage from "../../Pages/UpdateJobPage";
 
 export default function AppLayout() {
   return (
@@ -19,6 +20,7 @@ export default function AppLayout() {
         <CssBaseline />
         <Switch>
           <Route path="/create" component={CreateJobPage} />
+          <Route path="/update/:jobId" component={UpdateJobPage} />
           <Route path="/" exact component={HomePage} />
           <Redirect to="/" />
         </Switch>

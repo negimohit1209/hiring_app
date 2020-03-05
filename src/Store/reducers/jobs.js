@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
   error: false,
   selected: {
-    id: "",
+    id: null,
     title: "",
     desc: null,
     openPos: 0,
@@ -30,9 +30,14 @@ const fetchJobsFail = (state, action) => {
   return updateObject(state, { loading: false, error: true });
 };
 
-const selectJobStart = state => {};
-const selectJobSuccess = state => {};
-const selectJobFail = state => {};
+const selectJobStart = state => {
+  return updateObject(state, { loading: true });
+};
+const selectJobSuccess = (state, action) => {
+  const newSelected = action.job;
+  return updateObject(state, { selected: newSelected });
+};
+// const selectJobFail = state => {};
 
 const updateSelectedValue = (state, action) => {
   const newSelected = updateObject(state.selected, {
@@ -118,6 +123,10 @@ const reducer = (state = initialState, action) => {
       return jobformSubmitStart(state, action);
     case actionTypes.JOB_FORM_SUBMIT_SUCCESS:
       return jobformSubmitSuccess(state, action);
+    case actionTypes.SELECT_JOB_START:
+      return selectJobStart(state, action);
+    case actionTypes.SELECT_JOB_SUCCESS:
+      return selectJobSuccess(state, action);
     default:
       return state;
   }

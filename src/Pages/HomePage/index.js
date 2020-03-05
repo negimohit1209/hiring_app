@@ -9,7 +9,6 @@ class HomePage extends Component {
     this.props.onFetchJobs();
   }
   render() {
-    console.log(this.props.jobs);
     return (
       <div>
         <Appbar />

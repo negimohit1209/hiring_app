@@ -88,6 +88,7 @@ function Jobform({
           }}
         />
         <p>Description</p>
+        {console.log(selected.desc)}
         <TextEditor content={selected.desc} />
         <ChipInput
           value={selected.requiredSkills}
@@ -100,7 +101,7 @@ function Jobform({
       </div>
       <div className={classes.button}>
         <Button variant="contained" color="primary" type="submit">
-          Primary
+          Submit
         </Button>
       </div>
     </form>

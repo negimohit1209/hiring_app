@@ -53,7 +53,7 @@ class HomePage extends Component {
         <div style={{ textAlign: "center", width: "100%" }}>
           <div style={{ display: "inline-block" }}>
             <Pagination
-              count={Math.ceil(this.props.jobs.length / 4)}
+              count={Math.ceil(this.props.jobs.length / 3)}
               page={this.state.page}
               onChange={this.handleChange}
               color="primary"
